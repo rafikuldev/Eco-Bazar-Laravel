@@ -16,6 +16,9 @@
     <link
     href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
     rel="stylesheet"/>
+    {{-- data Table --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+    {{-- data Table --}}
     <link rel="stylesheet" href="{{ asset('backend/dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
 </head>
@@ -67,6 +70,33 @@
 
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     {{-- file pond ⬆️ --}}
+    {{-- Data Table --}}
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    {{-- Data Table --}}
+    {{-- sweet alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+    </script>
+    @if (session()->has('msg'))
+    <script>
+        Toast.fire({
+            icon: `{{ session('msg')['type']  ?? 'success' }}`,
+            title: `{{ session('msg')['res']  ?? 'Success'}} `
+        });
+    </script>
+        @endif
+    {{-- SwweetAlert2 ⬆️ --}}
     <script src="{{ asset('backend/dist/js/app.js') }}"></script>
     @stack('scripts')
     <!-- END: JS Assets-->

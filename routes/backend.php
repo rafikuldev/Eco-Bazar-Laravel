@@ -19,5 +19,7 @@ Route::prefix('backend/')->name('backend.')->middleware('auth')->group(function 
     Route::controller(CategoryController::class)->name('category.')->prefix('category')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/status-update/{id}', 'statusUpdate')->name('update.status');
     });
 });
