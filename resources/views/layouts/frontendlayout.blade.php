@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+  @stack('style')
 </head>
 
 <body>
@@ -66,7 +67,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-3 col-8 headerLogo order-1">
-            <a href="./index.html" class="img-fluid"><img src="{{asset('frontend/img/Logo .png')}}" alt="LOGO"></a>
+            <a href="{{ url('/') }}" class="img-fluid"><img src="{{asset('frontend/img/Logo .png')}}" alt="LOGO"></a>
           </div>
           <div class="col-lg-6 headerSearch order-3 order-lg-2 my-3 my-lg-0">
             <form action="" class="d-flex">
@@ -125,9 +126,19 @@
                 </a>
 
                 <ul class="categorySubmenu">
-                  <li><a href="#"><img src="https://cdn-icons-png')}}.flaticon.com/512/896/896530.png')}}" alt="">
-                      Electronics</a></li>
-                  <li><a href="#"><img src="https://cdn-icons-png')}}.flaticon.com/512/5564/5564823.png')}}" alt="">
+                    @foreach($categories as $category)
+                    <li>
+                      <a href="{{ route('frontend.category.archive', $category->slug) }}">
+                        <img src="{{ asset('storage/' . $category->icon) }}" alt="">
+                        {{ $category->category_title }}
+                      </a>
+                    </li>
+                    @endforeach
+                    {{-- <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/896/896530.png" alt="">
+                      Electronics</a>
+                    </li> --}}
+
+                  {{-- <li><a href="#"><img src="https://cdn-icons-png')}}.flaticon.com/512/5564/5564823.png')}}" alt="">
                       Furniture</a></li>
                   <li><a href="#"> <img src="https://cdn-icons-png')}}.flaticon.com/512/3050/3050198.png')}}" alt="">Fashion</a>
                   </li>
@@ -136,13 +147,13 @@
                   <li><a href="#"><img src="https://cdn-icons-png')}}.flaticon.com/512/6456/6456651.png')}}" alt="">Shoes</a>
                   </li>
                   <li><a href="#"> <img src="https://cdn-icons-png')}}.flaticon.com/512/3728/3728783.png')}}"
-                        alt="">Festival</a></li>
+                        alt="">Festival</a></li> --}}
                 </ul>
               </li>
-              <li><a href="./index.html" class="active">Home</a></li>
-              <li><a href="./shop.html">Shop</a></li>
+              <li><a href="{{ route('frontend.index') }}" class="active">Home</a></li>
+              <li><a href="{{ route('frontend.shop') }}">Shop</a></li>
               <li><a href="#">Blog</a></li>
-              <li><a href="./about.html">About Us</a></li>
+              <li><a href="{{ route('frontend.about') }}">About Us</a></li>
               <li><a href="./contact.html">Contact Us</a></li>
             </ul>
           </div>
@@ -155,6 +166,25 @@
         </div>
       </div>
     </div>
+    <!------------- Breadcrumbs Start Here ----------->
+    @if (!Request::is('/'))
+    <section id="Breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li class="d-flex align-items-center">
+                        <a href="{{ url('/') }}" class="homeIcom">
+                            <iconify-icon icon="fluent:home-16-regular" width="20" height="22"></iconify-icon>
+                        </a>
+                        <iconify-icon icon="formkit:right" width="15" height="15" style="color: #999"></iconify-icon>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <a href="shop.html" class="active">Shop</a>
+                    </li>
+                </ul>
+            </div>
+    </section>
+    @endif
+    {{-- Breadcraumb --}}
     <!-- === Bottom Header Ends === -->
     <!-- ===== OFF CANVAS ===== -->
     <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -184,14 +214,14 @@
 
   </header>
   <!-- === Headers Ends === -->
-  
+
     <!-- === Main Starts  === -->
     <main>
 
       @yield(
         'content'
       )
-  
+
     </main>
     <!-- === Main Ends === -->
 
@@ -337,8 +367,9 @@
   <script src="{{ asset('frontend/js/slick.min.') }}js"></script>
   <script src="{{ asset('frontend/js/venobox.min.') }}js"></script>
   <script src="{{ asset('frontend/js/jquery.countdown.min.') }}js"></script>
+
   <script src="{{ asset('frontend/js/app.') }}js"></script>
+  @stack('script')
   <!-- ===== JS Links ===== -->
 </body>
-
 </html>

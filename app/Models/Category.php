@@ -22,4 +22,9 @@ class Category extends Model
     {
         return 'slug';
     }
+
+    function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

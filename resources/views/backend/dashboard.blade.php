@@ -2,7 +2,7 @@
 @section('backend')
 
 <div class="grid columns-12 gap-6">
-                <div class="g-col-12 g-col-xxl-9">
+    <div class="g-col-12 g-col-xxl-9">
                     <div class="grid columns-12 gap-6">
                         <!-- BEGIN: General Report -->
                         <div class="g-col-12 mt-8">
@@ -620,9 +620,9 @@
                         </div>
                         <!-- END: Weekly Top Products -->
                     </div>
-                </div>
-                <div class="g-col-12 g-col-xxl-3">
-                <div class="border-start-xxl border-theme-5 dark-border-dark-3 mb-n10 pb-10">
+    </div>
+    <div class="g-col-12 g-col-xxl-3">
+    <div class="border-start-xxl border-theme-5 dark-border-dark-3 mb-n10 pb-10">
                         <div class="ps-xxl-6 grid grid-cols-12 gap-6">
                             <!-- BEGIN: Transactions -->
                             <div class="g-col-12 g-col-md-6 g-col-xl-4 g-col-xxl-12 mt-3 mt-xxl-8">
@@ -978,6 +978,6 @@
                             </div>
                             <!-- END: Schedules -->
                         </div>
-                </div>
+    </div>
 </div>
 @endsection

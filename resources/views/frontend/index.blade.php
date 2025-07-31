@@ -3,75 +3,49 @@
 
 
       <!-- Banner Start -->
-      <section id="banner" class="banner">
-        <div class="container position-relative">
-          <div class="bannerSlider">
+    <section id="banner" class="banner">
+    <div class="container position-relative">
+        <div class="bannerSlider">
+            {{-- Loop through each active banner from the database --}}
+            @foreach($banners as $banner)
             <div class="slide">
-              <div class="row align-items-center h-100">
-                <div class="col-md-7">
-                  <div class="bannerImg">
-                    <img class="img-fluid" src="{{asset('frontend/img/Image (1).png')}}" alt="Banner Image">
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="bannerContent lh-0">
-                    <p>Welcome to shopery</p>
-                    <h1>Fresh & Healthy
-                      Food</h1>
-                    <h5>Free shipping on all your order. we deliver, you enjoy</h5>
-                    <a href="./shop.html" class="btn lh-0">Shop Now <span class=""><iconify-icon
-                          icon="bitcoin-icons:arrow-right-filled" width="24" height="24"></iconify-icon></span></a>
-                  </div>
-                </div>
-              </div>
+                <div class="row align-items-center h-100">
+                    <div class="col-md-7">
+                        <div class="bannerImg">
+                            {{-- Dynamic Image --}}
+                            <img class="img-fluid" src="{{ asset('storage/' . $banner->image) }}" alt="{{ $banner->heading }}">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="bannerContent lh-0">
+                            {{-- Dynamic Sub Heading --}}
+                            <p>{{ $banner->sub_heading }}</p>
 
-            </div>
-            <div class="slide">
-              <div class="row align-items-center h-100">
-                <div class="col-md-7">
-                  <div class="bannerImg">
-                    <img class="img-fluid" src="{{asset('frontend/img/Image (2).png')}}" alt="Banner Image">
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="bannerContent lh-0">
-                    <p>Welcome to shopery</p>
-                    <h1>Wellcome to Eco Bazar</h1>
-                    <h5>Free shipping on all your order. we deliver, you enjoy</h5>
-                    <a href="./shop.html" class="btn lh-0">Shop Now <span class=""><iconify-icon
-                          icon="bitcoin-icons:arrow-right-filled" width="24" height="24"></iconify-icon></span></a>
-                  </div>
-                </div>
-              </div>
+                            {{-- Dynamic Heading --}}
+                            <h1>{{ $banner->heading }}</h1>
 
-            </div>
-            <div class="slide">
-              <div class="row align-items-center h-100">
-                <div class="col-md-7">
-                  <div class="bannerImg">
-                    <img class="img-fluid" src="{{asset('frontend/img/Image.png')}}" alt="Banner Image">
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="bannerContent lh-0">
-                    <p>Welcome to shopery</p>
-                    <h1>Fresh & Healthy
-                      Organic</h1>
-                    <h5>Free shipping on all your order. we deliver, you enjoy</h5>
-                    <a href="./shop.html" class="btn lh-0">Shop Now <span class=""><iconify-icon
-                          icon="bitcoin-icons:arrow-right-filled" width="24" height="24"></iconify-icon></span></a>
-                  </div>
-                </div>
-              </div>
+                            {{-- Dynamic Details --}}
+                            <h5>{{ $banner->details }}</h5>
 
+                            {{-- Dynamic Button --}}
+                            <a href="{{ $banner->button_link }}" class="btn lh-0">
+                                {{ $banner->button_name }}
+                                <span><iconify-icon icon="bitcoin-icons:arrow-right-filled" width="24" height="24"></iconify-icon></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="lh-0 leftArrow"><iconify-icon icon="mdi-light:arrow-left" width="24" height="24"></iconify-icon>
-          </div>
-          <div class="lh-0 rightArrow"><iconify-icon icon="mdi-light:arrow-right" width="24" height="24"></iconify-icon>
-          </div>
+            @endforeach
         </div>
-      </section>
+
+        {{-- These arrows will control the slider if there are multiple banners --}}
+        @if($banners->count() > 1)
+        <div class="lh-0 leftArrow"><iconify-icon icon="mdi-light:arrow-left" width="24" height="24"></iconify-icon></div>
+        <div class="lh-0 rightArrow"><iconify-icon icon="mdi-light:arrow-right" width="24" height="24"></iconify-icon></div>
+        @endif
+    </div>
+</section>
       <!-- Banner End -->
 
       <!-- Our Facilitys Start -->
