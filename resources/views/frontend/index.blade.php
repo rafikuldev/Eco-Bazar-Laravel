@@ -3,7 +3,7 @@
 
 
       <!-- Banner Start -->
-    <section id="banner" class="banner">
+      <section id="banner" class="banner">
     <div class="container position-relative">
         <div class="bannerSlider">
             {{-- Loop through each active banner from the database --}}
@@ -45,45 +45,27 @@
         <div class="lh-0 rightArrow"><iconify-icon icon="mdi-light:arrow-right" width="24" height="24"></iconify-icon></div>
         @endif
     </div>
-</section>
+      </section>
       <!-- Banner End -->
-
       <!-- Our Facilitys Start -->
       <section class="ourFacilitys" id="ourFacilitys">
-        <div class="container">
-          <div class="ourFacilicysCard">
+    <div class="container">
+        <div class="ourFacilicysCard">
             <div class="row">
-              <div
-                class="shipping text-start col-lg-3 col-md-6 col-sm-12 d-flex align-items-start justify-content-center flex-column">
-                <span><iconify-icon icon="material-symbols-light:delivery-truck-speed-outline" width="34"
-                    height="34"></iconify-icon></span>
-                <h5>Free Shipping</h5>
-                <p>Free shipping with discount</p>
-              </div>
-              <div
-                class="shipping text-start col-lg-3 col-md-6 col-sm-12 d-flex align-items-start justify-content-center flex-column">
-                <span><iconify-icon icon="streamline:customer-support-1" width="34" height="34"></iconify-icon></span>
-                <h5>Great Support 24/7</h5>
-                <p>Instant access to Contact</p>
-              </div>
-              <div
-                class="shipping text-start col-lg-3 col-md-6 col-sm-12 d-flex align-items-start justify-content-center flex-column">
-                <span><iconify-icon icon="uil:cart" width="34" height="34"></iconify-icon></span>
-                <h5>100% Sucure Payment</h5>
-                <p>We ensure your money is save</p>
-              </div>
-              <div
-                class="shipping text-start col-lg-3 col-md-6 col-sm-12 d-flex align-items-start justify-content-center flex-column">
-                <span><iconify-icon icon="solar:box-outline" width="34" height="34"></iconify-icon></span>
-                <h5>Money-Back Guarantee</h5>
-                <p>30 days money-back guarantee</p>
-              </div>
+                @foreach($facilities as $facility)
+                <div class="shipping text-start col-lg-3 col-md-6 col-sm-12 d-flex align-items-start justify-content-center flex-column">
+                    <span>
+                        <img src="{{ asset('storage/' . $facility->icon) }}" alt="{{ $facility->title }}" style="width: 34px; height: 34px;">
+                    </span>
+                    <h5>{{ $facility->title }}</h5>
+                    <p>{{ $facility->subtitle }}</p>
+                </div>
+                @endforeach
             </div>
-          </div>
         </div>
+    </div>
       </section>
       <!-- Our Facilitys Ends -->
-
       <!-- Featured Products Start -->
       <section class="featuredProducts" id="featuredProducts">
         <div class="container">

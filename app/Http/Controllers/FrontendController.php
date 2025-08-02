@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Facility;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -10,7 +11,8 @@ class FrontendController extends Controller
     function index()
     {
         $banners = Banner::where('status', true)->latest()->get();
-        return view('frontend.index', compact('banners'));
+        $facilities = Facility::where('status', true)->take(4)->get();
+        return view('frontend.index', compact('banners', 'facilities'));
     }
     function about()
     {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Backend\FacilityController;
 
 
 Route::controller(FrontendController::class)->name('frontend.')->group(function () {
@@ -31,6 +32,18 @@ Route::prefix('backend/category')->name('backend.category.')->group(function () 
     Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
 });
 
-// Backend routes for banner management
+// routes/web.php
 
+// routes/web.php
+
+
+Route::prefix('backend/facility')->name('backend.facility.')->group(function () {
+    Route::get('/', [FacilityController::class, 'index'])->name('index');
+    Route::get('/create', [FacilityController::class, 'create'])->name('create');
+    Route::post('/store', [FacilityController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [FacilityController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [FacilityController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FacilityController::class, 'destroy'])->name('destroy');
+    Route::get('/status-update/{id}', [FacilityController::class, 'statusUpdate'])->name('status.update');
+});
 

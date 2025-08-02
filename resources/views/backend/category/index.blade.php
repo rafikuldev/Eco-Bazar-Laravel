@@ -26,7 +26,7 @@
                         <img width="70px" src="{{ title_imge($category->icon) }}" alt="">
                     </div>
                 </div>
-            </td>  
+            </td>
             <td class="text-center">
                 {{ genaral_status($category->status, route('backend.category.update.status', $category->id))  }}
             </td>
