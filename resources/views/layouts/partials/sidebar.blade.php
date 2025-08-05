@@ -30,3 +30,11 @@
         <div class="side-menu__title"> Our Facilities </div>
     </a>
 </li>
+{{-- Product --}}
+<li>
+    <a href="{{ route('backend.product.index') }}"
+        class="side-menu {{ request()->routeIs('backend.product.*') ? 'side-menu--active side-menu--open' : '' }}">
+        <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+        <div class="side-menu__title"> Products </div>
+    </a>
+</li>

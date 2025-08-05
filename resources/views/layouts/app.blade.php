@@ -20,18 +20,19 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
     {{-- data Table --}}
     <link rel="stylesheet" href="{{ asset('backend/dist/css/app.css') }}" />
+    @stack('styles')
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
 
 <body class="main">
-   
+
     <div class="d-flex">
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
             <a href="{{ url('/') }}"  class="intro-x d-flex align-items-center ps-5 pt-4">
                 <img style="filter: grayscale(100%) invert(100%) brightness(200%)" alt="Rubick Tailwind HTML Admin Template" class=""
-                    src="{{ asset('frontend/img/Logo .png')}}">  
+                    src="{{ asset('frontend/img/Logo .png')}}">
             </a>
             <div class="side-nav__devider my-6"></div>
             <ul>
@@ -45,7 +46,7 @@
             @include('layouts.partials.topBar')
             <!-- END: Top Bar -->
             <main>
-                
+
                     @yield('backend')
 
             </main>
@@ -65,7 +66,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-    
+
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
