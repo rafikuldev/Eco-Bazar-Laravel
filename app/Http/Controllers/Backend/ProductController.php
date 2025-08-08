@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -16,14 +17,42 @@ class ProductController extends Controller
 
     public function create()
     {
-        // Logic to show product creation form
-        return view('backend.products.create');
+        $categories = Category::active()->get();
+        return view('backend.products.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        // Logic to store a new product
-        // Validate and save the product data
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'selling_price' => 'nullable|numeric',
+            'sku' => 'nullable|string|max:100',
+            'status' => 'boolean',
+            'featured' => 'boolean',
+            'stock' => 'boolean',
+            'short_details' => 'nullable|string',
+            'long_details' => 'nullable|string',
+            'additional_info' => 'nullable|string',
+            'featured_img' => 'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'gallImg.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'category' => 'required|exists:categories,id',
+        ]);
+
+        // Featured Img
+        $fileName = str($request->title)->slug() . '-' . uniqid() . '.' . $request->featured_img->extension();
+        $featuredImgPath = $request->featured_img->storeAs('products', $fileName, 'public');
+
+        // Gallery Images
+        $galleryImagesPath = [];
+        if (count($request->gallImg ?? []) > 0) {
+            foreach ($request->gallImg as $gallImg) {
+                $fileName = str($request->title)->slug() . '-' . uniqid() . '.' . $gallImg->extension();
+                $gallImgPaths = $gallImg->storeAs('products', $fileName, 'public');
+                $galleryImagesPath[] = $gallImgPaths;
+            }
+        }
+        dd($galleryImagesPath);
     }
     public function statusUpdate($id)
     {
@@ -45,6 +74,4 @@ class ProductController extends Controller
     {
         // Logic to delete the product
     }
-
-
 }
