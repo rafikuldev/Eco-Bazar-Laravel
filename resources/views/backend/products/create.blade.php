@@ -94,8 +94,8 @@
                         </div>
                         <div class="form-group">
                             <label for="gallery_img" class="form-label">Gallery Image</label>
-                            <input type="file" name="gallImg[]" id="gallery_img" class="form-control gallImage" multiple>
-                            @error('gallImg.*')
+                            <input type="file" name="gall_img[]" id="gallery_img" class="form-control gallImage" multiple>
+                            @error('gall_img.*')
                                 <span class="text-theme-6">{{ $message }}</span>
                             @enderror
                         </div>

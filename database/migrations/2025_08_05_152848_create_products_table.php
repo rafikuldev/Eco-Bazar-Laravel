@@ -25,9 +25,9 @@ return new class extends Migration
             $table->float('price');
             $table->float('selling_price')->nullable();
             $table->boolean('stock')->default(true);
-            $table->tinyText('sort_details')->nullable();
-            $table->mediumText('long_details')->nullable();
-            $table->mediumText('additional_info')->nullable();
+            $table->mediumText('short_details')->nullable();
+            $table->longText('long_details')->nullable();
+            $table->longText('additional_info')->nullable();
             $table->timestamps();
         });
     }
