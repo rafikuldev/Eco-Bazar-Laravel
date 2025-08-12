@@ -926,7 +926,7 @@ header .topHeader * {
     margin: 6px;
     cursor: pointer;
 }
-.pagination .next {
+.pagination .page-link {
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
@@ -945,13 +945,13 @@ header .topHeader * {
     align-items: center;
     cursor: pointer;
 }
-.pagination .next:focus,
-.pagination .next:hover {
+.pagination .page-link:focus,
+.pagination .page-link:hover {
     background: var(--branding-success);
     color: var(--gray-scale-white);
 }
-.pagination .next.active {
-    background: var(--branding-success);
+.pagination .page-item.active .page-link{
+    background-color: var(--branding-success);
     color: var(--gray-scale-white);
 }
 .pagination .leftPage,

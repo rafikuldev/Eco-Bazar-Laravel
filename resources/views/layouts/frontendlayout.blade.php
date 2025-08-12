@@ -128,7 +128,8 @@
                 <ul class="categorySubmenu">
                     @foreach($categories as $category)
                     <li>
-                      <a href="{{ route('frontend.category.archive', $category->slug) }}">
+                      {{-- <a href="{{ route('frontend.category.archive', $category->slug) }}"> --}}
+                        <a href="{{ route('frontend.shop', $category->slug) }}">
                         <img src="{{ asset('storage/' . $category->icon) }}" alt="">
                         {{ $category->category_title }}
                       </a>
@@ -167,8 +168,7 @@
       </div>
     </div>
     <!------------- Breadcrumbs Start Here ----------->
-    @if (!Request::is('/'))
-    <section id="Breadcrumbs">
+    {{-- <section id="Breadcrumbs">
             <div class="container">
                 <ul>
                     <li class="d-flex align-items-center">
@@ -182,9 +182,8 @@
                     </li>
                 </ul>
             </div>
-    </section>
-    @endif
-    {{-- Breadcraumb --}}
+    </section> --}}
+    {{-- Breadcrumb --}}
     <!-- === Bottom Header Ends === -->
     <!-- ===== OFF CANVAS ===== -->
     <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">

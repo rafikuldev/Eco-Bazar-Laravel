@@ -12,65 +12,32 @@
                     <div class="col-lg-6 productImg ">
                         <div class="row justify-content-center align-items-center">
                             <div class="position-relative d-lg-block d-none col-lg-3">
-                                <div class="minibannerSlider mt-5">
+                                <div class="productMinibannerSlider mt-5">
                                     <div class="slide">
                                         <div class="row align-items-center h-100">
                                             <div class="">
                                                 <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
+                                                    <img class="img-fluid" src="{{ title_imge($product->featured_img) }}"
+                                                        alt="{{ $product->title }}">
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    @if (count(json_decode($product->gall_img) ?? []) > 0)
+                                        @foreach (json_decode($product->gall_img) as $image)
+                                            <div class="slide">
+                                                <div class="row align-items-center h-100">
+                                                    <div class="">
+                                                        <div class="bannerImg">
+                                                            <img class="img-fluid" src="{{ title_imge($image) }}"
+                                                                alt="{{ $product->title }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
 
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid" src="{{ asset('frontend/img/New Project.jpg') }}"
-                                                        alt="Banner Image">
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="lh-0 slick-prev ">
                                     <i class='bx bx-chevron-up bx-fade-down'></i>
@@ -80,64 +47,34 @@
                                 </div>
                             </div>
                             <div class="col-lg-9">
-                                <div class="bannerSlider">
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
+                                <div class="bannerSlider productBannerSlider">
+                                    @if ($product->featured_img)
+                                        <div class="slide">
+                                            <div class="row align-items-center h-100">
+                                                <div class="">
+                                                    <div class="bannerImg">
+                                                        <img class="img-fluid"
+                                                            src="{{ title_imge($product->featured_img) }}"
+                                                            alt="{{ $product->title }}">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
+                                    @endif
+                                    @if (count(json_decode($product->gall_img) ?? []) > 0)
+                                        @foreach (json_decode($product->gall_img) as $image)
+                                            <div class="slide">
+                                                <div class="row align-items-center h-100">
+                                                    <div class="">
+                                                        <div class="bannerImg">
+                                                            <img class="img-fluid" src="{{ title_imge($image) }}"
+                                                                alt="{{ $product->title }}">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slide">
-                                        <div class="row align-items-center h-100">
-                                            <div class="">
-                                                <div class="bannerImg">
-                                                    <img class="img-fluid"
-                                                        src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                                        alt="Banner Image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -146,8 +83,11 @@
                     <div class="col-lg-6 productCnt">
                         <!-- Product Heading -->
                         <div class="productHeading d-flex align-items-center mb-2">
-                            <h2 class="mb-0 me-2">Chinese Cabbage</h2>
-                            <span class="in-stock">In Stock</span>
+                            <h2 class="mb-0 me-2">{{ $product->title }}</h2>
+                            {{-- <span class="in-stock">In Stock</span> --}}
+                            <span class="{{ $product->stock ? 'in-stock' : 'out-of-stock' }}">
+                                {{ $product->stock ? 'In Stock' : 'Out of Stock' }}
+                            </span>
                         </div>
                         <!-- Review Section -->
                         <div class="productRating d-flex mb-2">
@@ -160,20 +100,25 @@
                                 <span class="reviews">4 Reviews</span>
                             </div>
                             <span>.</span>
-                            <small class="text-muted">SKU: 231584</small>
+                            <small class="text-muted">SKU: {{ $product->sku }}</small>
                         </div>
                         <!-- Price Section -->
                         <div class="productPrice mb-3">
-                            <span class="original-price">$48.00</span>
-                            <span class="current-price ms-2">$17.28</span>
-                            <span class="discount-badge ms-2">64% OFF</span>
+                            @if ($product->selling_price)
+                                <span
+                                    class="original-price">{{ $product->price ? '$' . number_format($product->price, 2) : 'N/A' }}</span>
+                                <span class="current-price ms-2">${{ number_format($product->selling_price, 2) }}</span>
+                            @else
+                                <span class="current-price ms-2">${{ number_format($product->price, 2) }}</span>
+                            @endif
+                            <span class="discount-badge ms-2">
+                                {{ round(100 - (100 / $product->price) * $product->selling_price) }}% OFF</span>
                         </div>
                         <!-- Navigation and Social Icons -->
                         <div class="mb-3 navigation row">
                             <div class="col-6 d-flex align-items-center">
                                 <span class="me-2">Brand:</span>
-                                <a href=""><img class="img-fluid"
-                                        src="{{ asset('frontend/img/Group 19.png') }}"
+                                <a href=""><img class="img-fluid" src="{{ asset('frontend/img/Group 19.png') }}"
                                         alt="Banner Image"></a>
                             </div>
                             <div class="col-6 social-icons text-end">
@@ -189,19 +134,17 @@
                         </div>
                         <!-- Product Description -->
                         <div class="text mb-4">
-                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                                Nullam diam. Mauris vel consequat nisl, ultricies et ipsum. Nulla suscipit magna a consequat
-                                placerat.</p>
+                            <p>{!! $product->short_details !!}</p>
                         </div>
 
                         <!-- Cart Button  -->
                         <div class="cartBtn mb-4 ">
                             <div class="d-flex align-items-center">
                                 <!-- <div class="quantity-selector me-3">
-                      <button class="quantity-btn decrease-btn">-</button>
-                      <input type="text" class="quantity-input" value="1" readonly>
-                      <button class="quantity-btn increase-btn">+</button>
-                    </div> -->
+                                  <button class="quantity-btn decrease-btn">-</button>
+                                  <input type="text" class="quantity-input" value="1" readonly>
+                                  <button class="quantity-btn increase-btn">+</button>
+                                </div> -->
                                 <div class="quantity-control">
                                     <button class="quantity-btn decrease-btn quantityDecrement">-</button>
                                     <input type="number" class="quantity-input" value="1">
@@ -221,7 +164,8 @@
                         </div>
                         <!-- Tag and Category -->
                         <div class="category mb-3">
-                            <div>Category: <a href="#" class="">Vegetables</a></div>
+                            <div>Category: <a href="#" class="">{{ $product->category->category_title }}</a>
+                            </div>
                             <div>
                                 Tag:
                                 <a href="#" class="">Vegetables</a>
@@ -262,20 +206,9 @@
 
                             <div class="row content">
                                 <div class="description col-md-7">
-                                    <p>Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra
-                                        at mauris. Maecenas tincidunt ligula a sem vestibulum pharetra. Maecenas dapibus
-                                        tortor lorem ipsum.Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at
-                                        posuere ac,
-                                        viverra
-                                        at mauris. Maecenas tincidunt ligula a sem vestibulum pharetra. Maecenas dapibus
-                                        tortor lorem ipsum..</p>
-                                    <p class="secP">Nec vestibulum enim nisi vitae ipsum mauris nulla ut. Sed id velit
-                                        vestibulum nisl,
-                                        id molestie tellus. Nulla facilisi. Nam condimentum vitae justo a commodo. Morbi
-                                        imperdiet, placerat quis commodo risus, egestas elementum leo. Donec convallis
-                                        mollis enim. Aliquam id mi quam pharetra nec tincidunt elit.</p>
+                                    <p>{!! $product->long_details !!}</p>
 
-                                    <div class="feature mt-4">
+                                    {{-- <div class="feature mt-4">
                                         <div class="feature-item d-flex  align-items-center">
                                             <i class='bx bxs-check-circle bx-tada'></i>
                                             <div>100 g of fresh leaves provides</div>
@@ -292,10 +225,10 @@
                                             <i class='bx bxs-check-circle bx-tada'></i>
                                             <div>Proin convallis odio volutpat finibus posuere</div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <p class="mt-4">Cras et diam maximus, accumsan sapien et, sollicitudin velit. Nulla
-                                        blandit eros non turpis lobortis lacus at ultricies.</p>
+                                    {{-- <p class="mt-4">Cras et diam maximus, accumsan sapien et, sollicitudin velit. Nulla
+                                        blandit eros non turpis lobortis lacus at ultricies.</p> --}}
                                 </div>
 
                                 <div class="col-md-5">
@@ -334,7 +267,8 @@
                         </div>
                         <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
                             <div class="row">
-                                <div class="col-md-6">
+                                {!! $product->additional_info !!}
+                                {{-- <div class="col-md-6">
                                     <h5>Nutritional Information</h5>
                                     <table class="table">
                                         <tbody>
@@ -380,7 +314,7 @@
                                         <li>Non-GMO Project Verified</li>
                                         <li>Sustainably Grown</li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
@@ -532,7 +466,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -541,276 +474,45 @@
             <div class="container">
                 <h2 class="heading">Related Products</h2>
                 <div class="featureSlider">
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
+                    @foreach ($relatedProducts as $relatedProduct)
+                        <div class="productCard  ">
+                            <div class="thumbnail">
+                                <a href="{{ route('frontend.product.show', $relatedProduct->slug) }}"><img
+                                        src="{{ title_imge($relatedProduct->featured_img) }}" alt="{{ $relatedProduct->title }}"
+                                        class="img-fluid"></a>
+                                <ul class="quickLinks">
+                                    <li><a href="#"><iconify-icon icon="prime:heart" width="24"
+                                                height="24"></iconify-icon></a></li>
+                                    <li><a href="{{ route('frontend.product.show', $relatedProduct->slug) }}"><iconify-icon
+                                                icon="proicons:eye" width="24" height="24"></iconify-icon></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <a href="{{ route('frontend.product.show', $relatedProduct->slug) }}">{{ $relatedProduct->title }}</a>
+                                @if ($relatedProduct->selling_price)
+                                    <strong>{{ number_format($relatedProduct->selling_price, 2) }}৳
+                                        <span>{{ number_format($relatedProduct->price, 2) }}৳</span></strong>
+                                @else
+                                    <strong>{{ number_format($relatedProduct->price, 2) }}৳</strong>
+                                @endif
+                                <span class=""></span>
+                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                    height="18"></iconify-icon>
+                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                    height="18"></iconify-icon>
+                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                    height="18"></iconify-icon>
+                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                    height="18"></iconify-icon>
+                                <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
+                                    height="18"></iconify-icon>
+                                </span>
+                                <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
+                                        width="24" height="24"></iconify-icon></a>
+                            </div>
                         </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
-                    <div class="productCard col-lg-3 col-md-4 col-6 ">
-                        <div class="thumbnail">
-                            <a href="#"><img src="{{ asset('frontend/img/Big Product Image.png') }}"
-                                    alt="Banner Image"></a>
-                            <ul class="quickLinks">
-                                <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                            height="24"></iconify-icon></a></li>
-                                <li><a href="#"><iconify-icon icon="proicons:eye" width="24"
-                                            height="24"></iconify-icon></a></li>
-                            </ul>
-                        </div>
-                        <div class="content">
-                            <a href="#">Surjapur Mango</a>
-                            <strong>$14.99 <span>$20.99</span></strong>
-                            <span class=""></span>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                height="18"></iconify-icon>
-                            </span>
-                            <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                    width="24" height="24"></iconify-icon></a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="lh-0  leftArrow"><iconify-icon icon="mdi-light:arrow-left" width="24"
                         height="24"></iconify-icon>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('backend')
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('backend/dist/css/rte_theme_default.css') }}"/>
-@endpush
-@push('scripts')
-    <script src="{{ asset('backend/dist/js/rte.js') }}"></script>
-    <script src="{{ asset('backend/dist/js/all_plugins.js') }}"></script>
-@endpush
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('backend/dist/css/rte_theme_default.css') }}" />
+    @endpush
+    @push('scripts')
+        <script src="{{ asset('backend/dist/js/rte.js') }}"></script>
+        <script src="{{ asset('backend/dist/js/all_plugins.js') }}"></script>
+    @endpush
     <div class="card">
         <div class="card-header">
             <h3 class="fs-4xl text-center my-4 text-theme-1 fw-medium lh-1">Add New Product</h3>
@@ -33,7 +33,8 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="product_discount_price" class="form-label">Product Discount Price</label>
-                                    <input type="number" name="selling_price" id="product_discount_price" class="form-control">
+                                    <input type="number" name="selling_price" id="product_discount_price"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -44,43 +45,43 @@
                             </div>
                         </div>
                         {{-- toggle --}}
+                        {{-- toggle --}}
                         <div class="row mt-5">
                             <div class="col-lg-4">
                                 <div class="form-check form-switch w-full w-sm-auto ms-sm-auto mt-3 mt-sm-0 ps-0">
-                                    <label for="product_price" class="form-check-label ms-0 ms-sm-2">Product Status
-                                    </label>
-                                    <input type="checkbox" value="{{ true }}" data-target="#basic-accordion" name="status" id="product_status" class="show-code form-check-input me-0 ms-3">
+                                    <label for="product_status" class="form-check-label ms-0 ms-sm-2">Product Status</label>
+                                    {{-- The value will only be sent if checked --}}
+                                    <input type="checkbox" value="1" name="status" id="product_status"
+                                        class="show-code form-check-input me-0 ms-3" checked>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-check form-switch w-full w-sm-auto ms-sm-auto mt-3 mt-sm-0 ps-0">
-                                    <label for="product_price" class="form-check-label ms-0 ms-sm-2">Product Featured
-                                    </label>
-                                    <input type="checkbox" value="{{ true }}" data-target="#basic-accordion" name="featured" id="product_featured" class="show-code form-check-input me-0 ms-3">
+                                    <label for="product_featured" class="form-check-label ms-0 ms-sm-2">Product
+                                        Featured</label>
+                                    <input type="checkbox" value="1" name="featured" id="product_featured"
+                                        class="show-code form-check-input me-0 ms-3">
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-check form-switch w-full w-sm-auto ms-sm-auto mt-3 mt-sm-0 ps-0">
-                                    <label for="product_price" class="form-check-label ms-0 ms-sm-2">Product Stock
-                                    </label>
-                                    <input type="checkbox" value="{{ true }}" data-target="#basic-accordion" name="stock" id="product_stock" class="show-code form-check-input me-0 ms-3">
+                                    <label for="product_stock" class="form-check-label ms-0 ms-sm-2">Product Stock</label>
+                                    <input type="checkbox" value="1" name="stock" id="product_stock"
+                                        class="show-code form-check-input me-0 ms-3" checked>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group mt-4">
                             <label for="short_details" class="form-label">Short Details</label>
-                            <textarea  name="short_details" id="short_details"
-                            class="form-control"></textarea>
+                            <textarea name="short_details" id="short_details" class="form-control"></textarea>
                         </div>
                         <div class="form-group mt-4">
                             <label for="long_details" class="form-label">Long Details</label>
-                            <textarea  name="long_details" id="long_details"
-                            class="form-control"></textarea>
+                            <textarea name="long_details" id="long_details" class="form-control"></textarea>
                         </div>
                         <div class="form-group mt-4">
                             <label for="additional_info" class="form-label">Additional Info</label>
-                            <textarea  name="additional_info" id="additional_info"
-                            class="form-control"></textarea>
+                            <textarea name="additional_info" id="additional_info" class="form-control"></textarea>
                         </div>
                     </div>
                     {{-- Image part --}}
@@ -94,7 +95,8 @@
                         </div>
                         <div class="form-group">
                             <label for="gallery_img" class="form-label">Gallery Image</label>
-                            <input type="file" name="gall_img[]" id="gallery_img" class="form-control gallImage" multiple>
+                            <input type="file" name="gall_img[]" id="gallery_img" class="form-control gallImage"
+                                multiple>
                             @error('gall_img.*')
                                 <span class="text-theme-6">{{ $message }}</span>
                             @enderror

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\Facility;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class FrontendController extends Controller
     {
         $banners = Banner::where('status', true)->latest()->get();
         $facilities = Facility::where('status', true)->take(4)->get();
-        return view('frontend.index', compact('banners', 'facilities'));
+        $products = Product::with('category')->where('status', true)->latest()->get();
+        return view('frontend.index', compact('banners', 'facilities', 'products'));
     }
     function about()
     {
@@ -20,20 +23,30 @@ class FrontendController extends Controller
     }
     function shop()
     {
-        return view('frontend.shop');
+        $products = Product::with('category')->where('status', true)->latest()->paginate(12);
+        return view('frontend.shop', compact('products'));
     }
     function contact()
     {
         return view('frontend.contact');
     }
-    function product()
+    function showProduct($slug)
     {
-        return view('frontend.product');
+        $product = Product::where('slug', $slug)->first();
+        $relatedProducts = Product::where('status', 1)->where('category_id', $product->category_id)->whereNot('id', $product->id)->latest()->take(8)->get();
+        return view('frontend.product', compact('product', 'relatedProducts'));
     }
-    function categoryArchive($slug)
+    function categoryArchive($slug = null)
     {
-        // Logic to fetch category by slug and return view
-        // return view('frontend.category_archive', compact('slug'));
-
+        if ($slug) {
+            $category = Category::where('slug', $slug)->first();
+            $products = Product::where('status', 1)->whereHas('category', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            })->latest()->paginate(12);
+        } else {
+            $category = null;
+            $products = Product::where('status', true)->latest()->paginate(12);
+        }
+        return view('frontend.shop', compact('products', 'category'));
     }
 }

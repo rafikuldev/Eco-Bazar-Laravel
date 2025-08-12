@@ -1,79 +1,4 @@
-$(document).ready(function () {
-    $(".bannerSlider").slick({
-        arows: false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        dots: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        fade: true,
-        cssEase: "linear",
-        arrows: false,
-        asNavFor: ".minibannerSlider",
-    });
-    $(".minibannerSlider").slick({
-        asNavFor: ".bannerSlider",
-        vertical: true,
-        verticalSwiping: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        dots: false,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        cssEase: "linear",
-        focusOnSelect: true,
-        prevArrow: ` .slick-prev`,
-        nextArrow: ` .slick-next`,
-        responsive: [
-            {
-                breakpoint: 767,
-                settings: {
-                    vertical: false,
-                    verticalSwiping: false,
-                    autoplaySpeed: 2000,
-                    arrows: false,
-                    dots: true,
-                },
-            },
-        ],
-    });
-    $(".featureSlider").slick({
-        arows: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        prevArrow: `.featuredProductsSlider .leftArrow`,
-        nextArrow: `.featuredProductsSlider .rightArrow`,
-        dots: false,
-        slidesToShow: 5,
-        slidesToScroll: 3,
-        responsive: [
-            {
-                breakpoint: 800,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                },
-            },
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-        ],
-    });
-});
+
 $(document).ready(function () {
     // Quantity selector
     $(".increase-btn").click(function () {
@@ -107,5 +32,40 @@ document.querySelectorAll("a, button").forEach((el) => {
     });
     el.addEventListener("mouseleave", () => {
         gsap.to(".cursor", { scale: 1 });
+    });
+});
+$(document).ready(function () {
+    $(".productBannerSlider").slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        dots: false,
+        asNavFor: ".productMinibannerSlider",
+    });
+
+    // Thumbnail Slider
+    $(".productMinibannerSlider").slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: ".productBannerSlider",
+        dots: false,
+        arrows: true,
+        focusOnSelect: true,
+        vertical: true,
+        verticalSwiping: true,
+        // Target only the arrows related to this slider
+        prevArrow: $(".productMinibannerSlider").parent().find(".slick-prev"),
+        nextArrow: $(".productMinibannerSlider").parent().find(".slick-next"),
+        responsive: [
+            {
+                breakpoint: 767,
+                settings: {
+                    vertical: false,
+                    verticalSwiping: false,
+                    slidesToShow: 3,
+                },
+            },
+        ],
     });
 });

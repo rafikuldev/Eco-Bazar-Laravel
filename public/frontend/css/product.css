@@ -443,6 +443,15 @@ header .topHeader * {
     line-height: 150%;
     color: var(--branding-success-dark);
 }
+.productHeading .out-of-stock {
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: var(--gray-scale-white);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    background: var(--branding-error);
+}
 /* productHeading end */
 /* productRating */
 .productCnt .productRating > span {

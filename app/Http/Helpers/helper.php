@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
+
 if (!function_exists('getProfileImg')) {
     function getProfileImg($name) {
         return "https://api.dicebear.com/9.x/initials/svg?seed=$name";
@@ -50,7 +52,8 @@ if (!function_exists('stock_status')) {
 
 if (!function_exists('title_imge')) {
     function title_imge($src) {
-        if ($src && file_exists(public_path('storage/'.$src))) {
+
+        if ($src && Storage::disk('public')->exists($src)) {
             return asset('storage/'.$src);
         } else {
             return asset('frontend/img/placeholder.jpg');
