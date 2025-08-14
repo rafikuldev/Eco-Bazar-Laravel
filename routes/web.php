@@ -16,6 +16,7 @@ Route::controller(FrontendController::class)->name('frontend.')->group(function 
   Route::get('/product/{slug}', 'showProduct')->name('product.show');
   Route::get('/contact-us', 'contact')->name('contact');
   Route::get('/shop/{slug?}', 'categoryArchive')->name('shop');
+  Route::post('/review-submit', 'reviewSubmit')->name('review.submit');
 });
 Auth::routes();
 

@@ -1,5 +1,6 @@
 @extends('layouts.frontendlayout')
 @push('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/star-rating-svg.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/productresponsive.css') }}">
 @endpush
@@ -141,10 +142,10 @@
                         <div class="cartBtn mb-4 ">
                             <div class="d-flex align-items-center">
                                 <!-- <div class="quantity-selector me-3">
-                                  <button class="quantity-btn decrease-btn">-</button>
-                                  <input type="text" class="quantity-input" value="1" readonly>
-                                  <button class="quantity-btn increase-btn">+</button>
-                                </div> -->
+                                                      <button class="quantity-btn decrease-btn">-</button>
+                                                      <input type="text" class="quantity-input" value="1" readonly>
+                                                      <button class="quantity-btn increase-btn">+</button>
+                                                    </div> -->
                                 <div class="quantity-control">
                                     <button class="quantity-btn decrease-btn quantityDecrement">-</button>
                                     <input type="number" class="quantity-input" value="1">
@@ -319,71 +320,29 @@
                         </div>
                         <div class="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div
+                                    class="
+                                    @auth
+@if (!$hasReview)
+                                        col-md-8
+                                        @else
+                                        col-md-12
+                                        @endif
+                                    @else
+                                    col-md-12 @endauth">
                                     <div class="mb-4">
-                                        <h5>Customer Reviews (4)</h5>
+                                        <h5>Customer Reviews ({{ count($product->reviews) }})</h5>
                                     </div>
 
-                                    <!-- Review 1 -->
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <div>
-                                                    <h6 class="mb-0">Sarah Johnson</h6>
-                                                    <div class="rating-stars">
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                    </div>
-                                                </div>
-                                                <small class="text-muted">2 days ago</small>
-                                            </div>
-                                            <p>Very fresh and crisp! I used it in my stir fry and it was perfect. Will
-                                                definitely buy again.</p>
-                                        </div>
-                                    </div>
+                                    @forelse ($product->reviews as $review)
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <div>
+                                                        <h6 class="mb-0">{{ $review->user->name ?? 'Anonymous' }}</h6>
 
-                                    <!-- Review 2 -->
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <div>
-                                                    <h6 class="mb-0">Michael Chen</h6>
-                                                    <div class="rating-stars">
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                    </div>
-                                                </div>
-                                                <small class="text-muted">1 week ago</small>
-                                            </div>
-                                            <p>Good quality cabbage, but it was slightly smaller than I expected. Still, the
-                                                taste was excellent.</p>
-                                        </div>
-                                    </div>
 
-                                    <!-- Review 3 -->
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <div>
-                                                    <h6 class="mb-0">Emily Rodriguez</h6>
-                                                    <div class="rating-stars">
-                                                        <iconify-icon icon="twemoji:star" width="15"
+                                                        {{-- <iconify-icon icon="twemoji:star" width="15"
                                                             height="16"></iconify-icon>
                                                         <iconify-icon icon="twemoji:star" width="15"
                                                             height="16"></iconify-icon>
@@ -392,77 +351,75 @@
                                                         <iconify-icon icon="twemoji:star" width="15"
                                                             height="16"></iconify-icon>
                                                         <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                    </div>
-                                                </div>
-                                                <small class="text-muted">2 weeks ago</small>
-                                            </div>
-                                            <p>I love how fresh this cabbage is! It's perfect for my kimchi recipe and stays
-                                                crisp for a long time in the fridge.</p>
-                                        </div>
-                                    </div>
+                                                            height="16"></iconify-icon> --}}
 
-                                    <!-- Review 4 -->
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <div>
-                                                    <h6 class="mb-0">David Wilson</h6>
-                                                    <div class="rating-stars">
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
-                                                        <iconify-icon icon="twemoji:star" width="15"
-                                                            height="16"></iconify-icon>
+                                                        <div class="rating-stars">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $review->rating)
+                                                                    {{-- যদি $i-এর মান রেটিং-এর সমান বা কম হয়, তবে একটি ভরাট স্টার দেখান --}}
+                                                                    <iconify-icon icon="material-symbols:star"
+                                                                        style="color: #ffc107;" width="18"
+                                                                        height="20"></iconify-icon>
+                                                                @else
+                                                                    {{-- যদি $i-এর মান রেটিং-এর চেয়ে বেশি হয়, তবে একটি খালি স্টার দেখান --}}
+                                                                    <iconify-icon icon="material-symbols:star-outline"
+                                                                        style="color: #e0e0e0;" width="18"
+                                                                        height="20"></iconify-icon>
+                                                                @endif
+                                                            @endfor
+                                                        </div>
                                                     </div>
+                                                    <small
+                                                        class="text-muted">{{ $review->created_at->diffForHumans() }}</small>
                                                 </div>
-                                                <small class="text-muted">1 month ago</small>
+                                                <p>{{ $review->message ?? 'No review message' }}</p>
                                             </div>
-                                            <p>The cabbage was okay, but it had some brown spots when it arrived. Customer
-                                                service was great about it though.</p>
                                         </div>
-                                    </div>
+                                    @empty
+                                        <div class="alert alert-info" role="alert">
+                                            No reviews yet. Be the first to review this product!
+                                        </div>
+                                    @endforelse
+
+
                                 </div>
-
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Write a Review</h5>
-                                            <form id="review-form">
-                                                <div class="mb-3">
+                                @auth
+                                    @if (!$hasReview)
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Write a Review</h5>
+                                                    <form id="review-form" method="POST"
+                                                        action="{{ route('frontend.review.submit') }}">
+                                                        @csrf
+                                                        {{-- <div class="mb-3">
                                                     <label for="reviewName" class="form-label">Your Name</label>
                                                     <input type="text" class="form-control" id="reviewName" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="reviewEmail" class="form-label">Email</label>
                                                     <input type="email" class="form-control" id="reviewEmail" required>
+                                                </div> --}}
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Rating</label>
+                                                            <div class="my-rating-4" data-rating="2.5"></div>
+                                                            <input type="hidden" id="rating-value" value="0"
+                                                                name="rating">
+                                                            <input type="hidden" name="product_id"
+                                                                value="{{ $product->id }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="reviewText" class="form-label">Your Review</label>
+                                                            <textarea name="message" class="form-control" id="reviewText" rows="4"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success w-100">Submit
+                                                            Review</button>
+                                                    </form>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Rating</label>
-                                                    <div class="rating-select">
-                                                        <i class='bx bxs-star' data-rating="1"></i>
-                                                        <i class='bx bxs-star' data-rating="2"></i>
-                                                        <i class='bx bxs-star' data-rating="3"></i>
-                                                        <i class='bx bxs-star' data-rating="4"></i>
-                                                        <i class='bx bxs-star' data-rating="5"></i>
-                                                    </div>
-                                                    <input type="hidden" id="rating-value" value="0">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="reviewText" class="form-label">Your Review</label>
-                                                    <textarea class="form-control" id="reviewText" rows="4" required></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-success w-100">Submit
-                                                    Review</button>
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -470,60 +427,68 @@
             </div>
         </section>
         <!-- Related Products Slider Starts -->
-        <section class="featuredProductsSlider">
-            <div class="container">
-                <h2 class="heading">Related Products</h2>
-                <div class="featureSlider">
-                    @foreach ($relatedProducts as $relatedProduct)
-                        <div class="productCard  ">
-                            <div class="thumbnail">
-                                <a href="{{ route('frontend.product.show', $relatedProduct->slug) }}"><img
-                                        src="{{ title_imge($relatedProduct->featured_img) }}" alt="{{ $relatedProduct->title }}"
-                                        class="img-fluid"></a>
-                                <ul class="quickLinks">
-                                    <li><a href="#"><iconify-icon icon="prime:heart" width="24"
-                                                height="24"></iconify-icon></a></li>
-                                    <li><a href="{{ route('frontend.product.show', $relatedProduct->slug) }}"><iconify-icon
-                                                icon="proicons:eye" width="24" height="24"></iconify-icon></a>
-                                    </li>
-                                </ul>
+        @if (count($relatedProducts) > 0)
+            <section class="featuredProductsSlider">
+                <div class="container">
+                    <h2 class="heading">Related Products</h2>
+                    <div class="featureSlider">
+                        @foreach ($relatedProducts as $relatedProduct)
+                            <div class="productCard  ">
+                                <div class="thumbnail">
+                                    <a href="{{ route('frontend.product.show', $relatedProduct->slug) }}"><img
+                                            src="{{ title_imge($relatedProduct->featured_img) }}"
+                                            alt="{{ $relatedProduct->title }}" class="img-fluid"></a>
+                                    <ul class="quickLinks">
+                                        <li><a href="#"><iconify-icon icon="prime:heart" width="24"
+                                                    height="24"></iconify-icon></a></li>
+                                        <li><a href="{{ route('frontend.product.show', $relatedProduct->slug) }}"><iconify-icon
+                                                    icon="proicons:eye" width="24" height="24"></iconify-icon></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content">
+                                    <a
+                                        href="{{ route('frontend.product.show', $relatedProduct->slug) }}">{{ $relatedProduct->title }}</a>
+                                    @if ($relatedProduct->selling_price)
+                                        <strong>{{ number_format($relatedProduct->selling_price, 2) }}৳
+                                            <span>{{ number_format($relatedProduct->price, 2) }}৳</span></strong>
+                                    @else
+                                        <strong>{{ number_format($relatedProduct->price, 2) }}৳</strong>
+                                    @endif
+                                    <span class=""></span>
+                                    <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                        height="18"></iconify-icon>
+                                    <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                        height="18"></iconify-icon>
+                                    <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                        height="18"></iconify-icon>
+                                    <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
+                                        height="18"></iconify-icon>
+                                    <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
+                                        height="18"></iconify-icon>
+                                    </span>
+                                    <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
+                                            width="24" height="24"></iconify-icon></a>
+                                </div>
                             </div>
-                            <div class="content">
-                                <a href="{{ route('frontend.product.show', $relatedProduct->slug) }}">{{ $relatedProduct->title }}</a>
-                                @if ($relatedProduct->selling_price)
-                                    <strong>{{ number_format($relatedProduct->selling_price, 2) }}৳
-                                        <span>{{ number_format($relatedProduct->price, 2) }}৳</span></strong>
-                                @else
-                                    <strong>{{ number_format($relatedProduct->price, 2) }}৳</strong>
-                                @endif
-                                <span class=""></span>
-                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                    height="18"></iconify-icon>
-                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                    height="18"></iconify-icon>
-                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                    height="18"></iconify-icon>
-                                <iconify-icon class="fullStar" icon="material-symbols:star-rounded" width="18"
-                                    height="18"></iconify-icon>
-                                <iconify-icon class="halfStar" icon="material-symbols:star-rounded" width="18"
-                                    height="18"></iconify-icon>
-                                </span>
-                                <a class="addToCart" href="#"><iconify-icon icon="heroicons:shopping-bag"
-                                        width="24" height="24"></iconify-icon></a>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+                    <div class="lh-0  leftArrow"><iconify-icon icon="mdi-light:arrow-left" width="24"
+                            height="24"></iconify-icon>
+                    </div>
+                    <div class="lh-0  rightArrow"><iconify-icon icon="mdi-light:arrow-right" width="24"
+                            height="24"></iconify-icon>
+                    </div>
                 </div>
-                <div class="lh-0  leftArrow"><iconify-icon icon="mdi-light:arrow-left" width="24"
-                        height="24"></iconify-icon>
-                </div>
-                <div class="lh-0  rightArrow"><iconify-icon icon="mdi-light:arrow-right" width="24"
-                        height="24"></iconify-icon>
-                </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- Related Products Slider Ends-->
     </main>
+
+
+
+
+
 
     <!-- ===== OFF CANVAS ===== -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -553,8 +518,32 @@
             </ul>
         </div>
     </div>
-
     @push('script')
         <script src="{{ asset('frontend/js/product.js') }}"></script>
+        <script src="{{ asset('frontend/js/jquery.star-rating-svg.js') }}"></script>
+        <script>
+            $(".my-rating-4").starRating({
+                totalStars: 5,
+                useFullStars: true,
+                starShape: 'rounded',
+                starSize: 40,
+                emptyColor: 'lightgray',
+                hoverColor: '#FFAC33',
+                activeColor: 'black',
+                ratedColors: [
+                    '#FFAC33',
+                    '#FFAC33',
+                    '#FFAC33',
+                    '#FFAC33',
+                    '#FFAC33'
+                ],
+                useGradient: false,
+
+                callback: function(currentRating, $el) {
+                    // This line updates the hidden input's value
+                    $('#rating-value').val(currentRating);
+                }
+            });
+        </script>
     @endpush
 @endsection

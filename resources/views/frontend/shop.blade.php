@@ -646,5 +646,7 @@
         </div>
     </div>
     <!-- ------------------------ Best Sale Products End Here ------------  -->
-
 @endsection
+@push('script')
+    <script src="{{ asset('frontend/js/') }}"></script>
+@endpush

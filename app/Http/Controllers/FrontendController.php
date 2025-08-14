@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Facility;
@@ -32,9 +33,10 @@ class FrontendController extends Controller
     }
     function showProduct($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::with('reviews.user:id,name,email')->where('slug', $slug)->first();
+        $hasReview = Review::where('user_id', auth()->user()->id ?? null)->where('product_id', $product->id)->exists();
         $relatedProducts = Product::where('status', 1)->where('category_id', $product->category_id)->whereNot('id', $product->id)->latest()->take(8)->get();
-        return view('frontend.product', compact('product', 'relatedProducts'));
+        return view('frontend.product', compact('product', 'relatedProducts', 'hasReview'));
     }
     function categoryArchive($slug = null)
     {
@@ -48,5 +50,19 @@ class FrontendController extends Controller
             $products = Product::where('status', true)->latest()->paginate(12);
         }
         return view('frontend.shop', compact('products', 'category'));
+    }
+    function reviewSubmit(Request $request)
+    {
+        $request->validate([
+            'rating' => 'required|between:1,5',
+            'message' => 'nullable|max:1000',
+        ]);
+        Review::create([
+            'product_id' => $request->product_id,
+            'user_id' => auth()->user()->id,
+            'rating' => $request->rating,
+            'message' => $request->message,
+        ]);
+        return redirect()->back()->with('success', 'Review submitted successfully!');
     }
 }
